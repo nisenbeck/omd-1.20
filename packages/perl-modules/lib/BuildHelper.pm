@@ -409,7 +409,7 @@ sub install_module {
 
     eval {
         local $SIG{ALRM} = sub { die "timeout on: $file\n" };
-        alarm(120); # single module should not take longer than 1 minute
+        alarm(1200); # single module should not take longer than 1 minute
         if( -f "Build.PL" ) {
             `$PERL Build.PL >> $LOG 2>&1 && ./Build >> $LOG 2>&1 && ./Build install >> $LOG 2>&1`;
             if($? != 0 ) { die("error: rc $?\n".`cat $LOG`."\n"); }
